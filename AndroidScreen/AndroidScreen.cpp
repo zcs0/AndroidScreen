@@ -1,7 +1,7 @@
 ﻿
 // AndroidScreen.cpp: 定义应用程序的类行为。
 //
-
+//更多软件 https://bbs.pediy.com/user-854079.htm
 #include "stdafx.h"
 #include "AndroidScreen.h"
 #include "AndroidScreenDlg.h"
