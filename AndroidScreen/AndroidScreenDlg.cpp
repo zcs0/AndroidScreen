@@ -12,7 +12,7 @@
 #define new DEBUG_NEW
 #endif
 ADBUtils *util;
-
+//更多软件 https://bbs.pediy.com/user-854079.htm
 
 // 用于应用程序“关于”菜单项的 CAboutDlg 对话框
 
