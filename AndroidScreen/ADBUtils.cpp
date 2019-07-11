@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "ADBUtils.h"
-
+//æ›´å¤šè½¯ä»¶ https://bbs.pediy.com/user-854079.htm
 DWORD __stdcall ThreadAdbshellProc(void *pVoid)
 {
 	if (pVoid != NULL) {
@@ -93,7 +93,7 @@ BOOL ADBUtils::Start()
 	//m_hProcess = pinfo.hProcess;
 
 	DWORD dwThread = FALSE;
-	hThread = CreateThread(NULL, 0, ThreadAdbshellProc, this, 0, &dwThread);//Õâ¸ö²ÎÊıÄã¸ù¾İÄãµÄĞèÒª¾ö¶¨Òª²»Òª
+	hThread = CreateThread(NULL, 0, ThreadAdbshellProc, this, 0, &dwThread);//è¿™ä¸ªå‚æ•°ä½ æ ¹æ®ä½ çš„éœ€è¦å†³å®šè¦ä¸è¦
 	if (hThread == NULL) {
 		return FALSE;
 	}
@@ -103,7 +103,7 @@ BOOL ADBUtils::Start()
 	return TRUE;
 }
 
-//ÕâÀïÊäÈëµÄÊÇÔÚadb shell×´Ì¬ÏÂµÄÅú´¦ÀíÃüÁî£¬Èç¹ûÓĞ¶àÌõÇëÒÔ\n·Ö¸ô
+//è¿™é‡Œè¾“å…¥çš„æ˜¯åœ¨adb shellçŠ¶æ€ä¸‹çš„æ‰¹å¤„ç†å‘½ä»¤ï¼Œå¦‚æœæœ‰å¤šæ¡è¯·ä»¥\nåˆ†éš”
 BOOL ADBUtils::RunCmd(const CString&strCmdline)
 {
 	BOOL bSuccess = TRUE;
@@ -115,7 +115,7 @@ BOOL ADBUtils::RunCmd(const CString&strCmdline)
 	if (strCmdline.GetLength() < 2) {
 		return FALSE;
 	}
-	//ÏÈµÈ´ıÏß³Ìº¯Êı×¼±¸ºÃ
+	//å…ˆç­‰å¾…çº¿ç¨‹å‡½æ•°å‡†å¤‡å¥½
 	WaitForSingleObject(m_hEvent, INFINITE);
 
 	while (TRUE) {
@@ -126,10 +126,10 @@ BOOL ADBUtils::RunCmd(const CString&strCmdline)
 		}
 		strOneCmd = strCmdline.Mid(nPos1, nPos2 - nPos1).Trim();
 
-		//ÃüÁî³¤¶ÈÖÁÉÙÎª2
+		//å‘½ä»¤é•¿åº¦è‡³å°‘ä¸º2
 		if (strOneCmd.GetLength() >= 2) {
 			strOneCmd += "\r\n";
-			//Ö´ĞĞ
+			//æ‰§è¡Œ
 			bSuccess = WriteFile(m_hWritePipe2, strOneCmd, strOneCmd.GetLength(), &dwWrite, NULL);
 		}
 
@@ -142,7 +142,7 @@ BOOL ADBUtils::RunCmd(const CString&strCmdline)
 	return bSuccess;
 }
 
-//ÍË³öshellÃüÁî×´Ì¬£¬¹Ø±Õ½ø³Ì¡£²»ÄÜÍ¨¹ıTerminateProcess·½Ê½½áÊø£¬·ñÔò»áÓĞ¶ÁÈ¡²»È«µÄÇé¿ö
+//é€€å‡ºshellå‘½ä»¤çŠ¶æ€ï¼Œå…³é—­è¿›ç¨‹ã€‚ä¸èƒ½é€šè¿‡TerminateProcessæ–¹å¼ç»“æŸï¼Œå¦åˆ™ä¼šæœ‰è¯»å–ä¸å…¨çš„æƒ…å†µ
 BOOL ADBUtils::Stop()
 {
 	//CString str("");
@@ -158,12 +158,12 @@ BOOL ADBUtils::Stop()
 	//return TRUE;
 }
 
-//¶ÁÈ¡Êä³ö½á¹û,µ÷ÓÃÇ°ÇëÎñ±Øµ÷ÓÃStopÏÈ½áÊø
+//è¯»å–è¾“å‡ºç»“æœ,è°ƒç”¨å‰è¯·åŠ¡å¿…è°ƒç”¨Stopå…ˆç»“æŸ
 CString ADBUtils::GetOutput()
 {
 	WaitForSingleObject(hThread, INFINITE);
 
-	//Á½¸öexitÒªÈ¥µô
+	//ä¸¤ä¸ªexitè¦å»æ‰
 	int nPos1 = 0;
 	//int nPos2 = 0;
 
@@ -268,7 +268,7 @@ BOOL ADBUtils::execute(wchar_t adb[], wchar_t parameter[]) {
 	//m_hProcess = pinfo.hProcess;
 
 	DWORD dwThread = FALSE;
-	hThread = CreateThread(NULL, 0, ThreadAdbshellProc, this, 0, &dwThread);//Õâ¸ö²ÎÊıÄã¸ù¾İÄãµÄĞèÒª¾ö¶¨Òª²»Òª
+	hThread = CreateThread(NULL, 0, ThreadAdbshellProc, this, 0, &dwThread);//è¿™ä¸ªå‚æ•°ä½ æ ¹æ®ä½ çš„éœ€è¦å†³å®šè¦ä¸è¦
 	if (hThread == NULL) {
 		return FALSE;
 	}
@@ -300,7 +300,7 @@ CString ADBUtils::GetFrist(CString str) {
 	return phontDevice;
 }
 CString ADBUtils::GetPhoto() {
-	if (phontDevice.IsEmpty()|| adbPath ==NULL) {//Ã»ÓĞÁ¬½ÓµÄÊÖ»ú
+	if (phontDevice.IsEmpty()|| adbPath ==NULL) {//æ²¡æœ‰è¿æ¥çš„æ‰‹æœº
 		return NULL;
 	}
 	//wchar_t *adb = char2wchar(adbPath);
@@ -315,7 +315,7 @@ CString ADBUtils::GetPhoto() {
 
 
 	//adb shell screencap -p /sdcard/0101.png
-	//´ÓÊÖ»ú½ØÆÁcopy³öÀ´
+	//ä»æ‰‹æœºæˆªå±copyå‡ºæ¥
 	CString str;
 	///str.Format(L"adb %s %s %s %s", "qq", CStringW("ww"), CStringW("qweq"), CStringW("uu"));
 	str.Format(_T("adb -s %s shell screencap -p %s "), CStringW(phontDevice), CStringW("/sdcard/0101.png"));
@@ -329,7 +329,7 @@ CString ADBUtils::GetPhoto() {
 	//adb -s 925cdad5 exec-out screencap -p > d:\\2019\\0101.png
 	//adb pull /sdcard/0101.png d:\\2019\0101.png
 	str.Format(_T("adb -s %s pull %s %s "), CStringW(phontDevice), CStringW("/sdcard/0101.png"), CStringW("d:\\2019\\0101.png"));
-	//±£´æ½ØÍ¼µ½ÊÖ»ú³É¹¦ºó
+	//ä¿å­˜æˆªå›¾åˆ°æ‰‹æœºæˆåŠŸå
 	paream = str.AllocSysString();
 	b = execute(adb, paream);
 	//CString ss = GetOutput();
